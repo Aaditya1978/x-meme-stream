@@ -1,0 +1,72 @@
+.heading{
+    text-align: center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-weight: bolder;
+}
+.preloader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom:0;
+    right:0;
+    width: 100%;
+    height: 100vh;
+    z-index: 99999999;
+    background-image: url('../images/progress.png');
+    background-repeat: no-repeat;
+    background-color: #FFF;
+    background-position: center;
+}
+
+#stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+    }
+
+
+#head{
+    text-align: center;
+    font-weight: bolder;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.memedata{
+    padding-right: 5px;
+}
+
+.memedata .img{
+    padding-left: 10px;
+    width:  250px;
+    height: 250px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.memedata .name{
+    font-size:30px;
+    font-family: 'Anton', sans-serif;
+    color: rgb(26, 25, 25);
+}
+
+.memedata .caption{
+    padding-left: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(36, 35, 35);
+}
+
+.memedata .dtime{
+    font-size: 13px;
+    font-weight: lighter;
+    color: rgb(92, 90, 90);
+    padding-top: 5px;
+}
+
+label.error {
+    color: red;
+    font-size: 1rem;
+    display: block;
+    margin-top: 5px;
+}
