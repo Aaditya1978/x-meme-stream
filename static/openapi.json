@@ -1,0 +1,214 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Meme Stream",
+    "description": "An API to show and send Meme"
+  },
+  "paths": {
+    "/memes": {
+      "post": {
+        "tags": [
+          "Memes"
+        ],
+        "description": "Posts Meme",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "jack"
+                  },
+                  "caption": {
+                    "type": "string",
+                    "example": "wow"
+                  },
+                  "url": {
+                    "type": "string",
+                    "example": "https://images.pexels.com/photos/3573382/"
+                  }
+                },
+                "required": [
+                  "name",
+                  "caption",
+                  "url"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "meme",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "example": 12,
+                      "description": "The Meme ID."
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "sam",
+                      "description": "user name."
+                    },
+                    "caption": {
+                      "type": "string",
+                      "example": "wow",
+                      "description": "Caption for meme"
+                    },
+                    "url": {
+                      "type": "string",
+                      "example": "https://images.pexels.com/ph82.jpeg",
+                      "description": "Image URL"
+                    },
+                    "date_time": {
+                      "type": "string",
+                      "example": "2021-02-07T14:28:33.139955",
+                      "description": "Date and Time when meme was posted"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "442": {
+            "description": "parameters missing"
+          },
+          "409": {
+            "description": "Duplicate Entry"
+          },
+          "500": {
+            "description": "Internal Sever Error"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Memes"
+        ],
+        "description": "Gets Meme",
+        "responses": {
+          "200": {
+            "description": "retrieved all memes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 25,
+                        "description": "The Meme ID."
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "sam",
+                        "description": "user name."
+                      },
+                      "caption": {
+                        "type": "string",
+                        "example": "wow",
+                        "description": "Caption for meme"
+                      },
+                      "url": {
+                        "type": "string",
+                        "example": "https://images.pexels.com/ph82.jpeg",
+                        "description": "Image URL"
+                      },
+                      "date_time": {
+                        "type": "string",
+                        "example": "2021-02-07T14:28:33.139955",
+                        "description": "Date and Time when meme was posted"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Sever Error"
+          }
+        }
+      }
+    },
+    "/memes/{id}": {
+      "get": {
+        "tags": [
+          "Memes"
+        ],
+        "description": "Gets Meme for a given id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "description": "Id of meme",
+            "schema": {
+              "type": "integer",
+              "example": 12
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "retrieved meme",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "example": 12,
+                        "description": "The Meme ID."
+                      },
+                      "name": {
+                        "type": "string",
+                        "example": "sam",
+                        "description": "user name."
+                      },
+                      "caption": {
+                        "type": "string",
+                        "example": "wow",
+                        "description": "Caption for meme"
+                      },
+                      "url": {
+                        "type": "string",
+                        "example": "https://images.pexels.com/ph82.jpeg",
+                        "description": "Image URL"
+                      },
+                      "date_time": {
+                        "type": "string",
+                        "example": "2021-02-07T14:28:33.139955",
+                        "description": "Date and Time when meme was posted"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "ID not found"
+          },
+          "500": {
+            "description": "Internal Sever Error"
+          }
+        }
+      }
+    }
+  }
+}
