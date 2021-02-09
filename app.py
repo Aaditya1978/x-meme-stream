@@ -11,12 +11,16 @@ import json
 app = Flask(__name__)
 
 # Configure SQLALCHEMY for flask app
-app.config ['SQLALCHEMY_DATABASE_URI'] = 'postgres://wnuzmcsnahfenp:6657c98ebdd59f748ee671bd39f25b2b94cc5cdb120b0fc4c024dc34087fddc8@ec2-54-225-190-241.compute-1.amazonaws.com:5432/d5tjm3cmvn0o9i'
+app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///meme_database.sqlite3'
 
 
 # Make object of SQLALChemy and MArshmallow
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
+
+# Setting date time to local date time
+tz = timezone("Asia/Calcutta")
+tz.localize(datetime(2012, 7, 10, 12, 0))
 
 
 # Creating class of database
@@ -25,7 +29,7 @@ class meme_database(db.Model):
     name = db.Column(db.String(200),nullable=False)
     caption = db.Column(db.String(300),nullable=False)
     url = db.Column(db.String(2000),nullable=False)
-    date_time = db.Column(db.DateTime,nullable=False,default=datetime.now(timezone("Asia/Kolkata")))
+    date_time = db.Column(db.DateTime,nullable=False,default=datetime.now(tz).replace(tzinfo = None) )
 
 
 # Creating Schema of database with marshmallow
