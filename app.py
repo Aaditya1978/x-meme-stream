@@ -18,8 +18,6 @@ app.config ['SQLALCHEMY_DATABASE_URI'] = 'postgres://wnuzmcsnahfenp:6657c98ebdd5
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
-# creating datetime object
-now = datetime.now()
 
 # Creating class of database
 class meme_database(db.Model):
