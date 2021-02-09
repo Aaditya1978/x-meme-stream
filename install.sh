@@ -5,3 +5,4 @@ pip3 install marshmallow-sqlalchemy
 pip3 install flask-marshmallow
 pip3 install flask-sqlalchemy
 pip3 install pytz
+pip3 install psycopg2
