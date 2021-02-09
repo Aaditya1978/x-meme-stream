@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no">
+
+    <title>Meme Stream</title>
+
+    <!--Title logo-->
+    <link rel="shortcut icon" type="image/x-icon" href="../static/images/favicon/favicon.ico" />
+
+    <!--Bootstrap CDN Link-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!--CSS Files Link-->
+    <link rel="stylesheet" href="../static/css/meme.css">
+
+    <!--Google Font API LINK-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+    <!--Jquery CDN-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <!--Ajax CDN-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+</head>
+
+
+<body id="stop-scrolling">
+
+    <!--Pre Loader-->
+    <div class="preloader"></div>
+
+    <!--Navbar-->
+    <nav class="navbar navbar-light" style="background-color: #404041;">
+        <div class="container-fluid">
+            <a style="font-weight: bolder; font-family:Georgia, 'Times New Roman', Times, serif;color:#f33737;" class="navbar-brand" href="#">
+                <img src="../static/images/favicon/favicon-32x32.png" alt="logo" class="d-inline-block align-top">
+                Meme Stream
+            </a>
+            <a class="d-flex" href="{{url_for('get_docs')}}" target="_blank">
+                <button style="color: #f33737;font-weight:bolder" class="btn btn-outline-success" type="submit">Swagger UI</button>
+            </a>
+        </div>
+    </nav>
+
+    <!--Crousel-->
+    <div class="carousel slide carousel-fade mb-3" id="carousel" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../static/images/crousel_1.png" class="d-block w-100" alt="image 1">
+            </div>
+            <div class="carousel-item">
+                <img src="../static/images/crousel_2.png" class="d-block w-100" alt="image 2">
+            </div>
+            <div class="carousel-item">
+                <img src="../static/images/crousel_3.png" class="d-block w-100" alt="image 3">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carousel" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carousel" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+
+    <!--Input Form-->
+    <div class="container">
+        <h1 class="mb-3" style="text-align: center;"> Send Your Own Meme </h1>
+
+        <form class="row mb-3 needs-validation" id="form">
+            <div class="mb-3">
+                <label for="user_name" class="form-label">Enter Name</label>
+                <input class="form-control" name="user_name" id="user_name" type="text" placeholder="Your Name" required>
+            </div>
+            <div class="mb-3">
+                <label for="caption" class="form-label">Enter Caption For Meme</label>
+                <input class="form-control" name="caption" id="caption" type="text" placeholder="Meme Caption" required>
+            </div>
+            <div class="mb-3">
+                <label for="image_url" class="form-label">Enter Image URL</label>
+                <input class="form-control" name="image_url" id="image_url" type="url" placeholder="Meme Image URL" required>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary" id="submit" type="submit">Submit Meme</button>
+            </div>
+        </form>
+
+        <!--Success Message-->
+        <div class="alert alert-success alert-dismissible fade show" id="message" role="alert">
+            <strong>Posted Successfully!!</strong> You may go to meme stream
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <!--Error Message-->
+        <div class="alert alert-danger alert-dismissible fade show" id="message_fail" role="alert">
+            <strong>There was some Error!!</strong> Please Try again
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <!--Duplicate Error Message-->
+        <div class="alert alert-danger alert-dismissible fade show" id="message_duplicate" role="alert">
+            <strong>Exactly Same meme with same caption!!</strong> Posted by you.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+
+    <!--Error message for stream-->
+    <div class="alert alert-danger alert-dismissible fade show" id="stream_fail" role="alert">
+        <strong>There was some Error!! Please Try again</strong> Please Try again
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <!-- Meme Stream -->
+    <div class="container mb-3" id="meme_stream" style="display: none;">
+        <h1 class="mb-3" id="head">Meme Stream</h1>
+        <br>
+        <ul class="row" id="meme_display"></ul>
+    </div>
+
+
+
+    <!-- Scripts -->
+    <script src="../static/js/meme.js"></script>
+    <script src="../static/js/loader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+</body>
+</html>
