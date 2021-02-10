@@ -11,7 +11,7 @@ import json
 app = Flask(__name__)
 
 # Configure SQLALCHEMY for flask app
-app.config ['SQLALCHEMY_DATABASE_URI'] = 'postgres://wnuzmcsnahfenp:6657c98ebdd59f748ee671bd39f25b2b94cc5cdb120b0fc4c024dc34087fddc8@ec2-54-225-190-241.compute-1.amazonaws.com:5432/d5tjm3cmvn0o9i'
+app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///meme_database.sqlite3'
 
 
 # Make object of SQLALChemy and MArshmallow
